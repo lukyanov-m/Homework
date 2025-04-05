@@ -13,4 +13,6 @@ def get_mask_card_number(card_number: [int | str]) -> str:
 def get_mask_account(account_number: [int | str]) -> str:
     """Функция возвращает последние четыре цифры номера счета"""
     str_account_number = str(account_number)
+    if len(str_account_number) != 20:
+        return "Не корректный номер счета"
     return "**" + str_account_number[-4:]
