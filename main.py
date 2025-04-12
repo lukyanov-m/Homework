@@ -1,5 +1,4 @@
-from src import masks, widget, processing
-
+from src import processing, widget
 
 account = "Счет 15478562456985215489"
 card = "Visa Classic 6831982476737658"
