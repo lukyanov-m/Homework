@@ -11,5 +11,5 @@ def mask_account_card(card_or_account: str) -> str:
 
 def get_date(date_and_time: str) -> str:
     """Принимает строку с датой и временем ГГГГ-ММ-ДД+время, возвращает дату в формате ДД.ММ.ГГГГ"""
-    list_date = date_and_time[:10].split("-")
-    return f"{list_date[2]}.{list_date[1]}.{list_date[0]}"
+    date_at_list = date_and_time[:10].split("-")
+    return f"{date_at_list[2]}.{date_at_list[1]}.{date_at_list[0]}"
