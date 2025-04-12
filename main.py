@@ -6,13 +6,13 @@ card = "Visa Classic 6831982476737658"
 date = "2018-06-30T02:08:58.425572"
 
 
-#for widget
+# for widget
 print(widget.mask_account_card(card))
 print(widget.mask_account_card(account))
 print(widget.get_date(date))
 
 
-#for processing
+# for processing
 process = [
     {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
     {"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08:58.425572"},
