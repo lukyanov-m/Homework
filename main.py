@@ -20,4 +20,5 @@ process = [
 ]
 
 print(processing.sort_by_date(process))
+print(processing.sort_by_date(process, reverse=False))
 print(processing.filter_by_state(process))
