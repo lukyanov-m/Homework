@@ -1,7 +1,24 @@
-from src.masks import get_mask_account, get_mask_card_number
+from src import processing, widget
 
-number_card = get_mask_card_number("2568475325984528")
-number_account = get_mask_account(15478562456985215489)
+account = "Счет 15478562456985215489"
+card = "Visa Classic 6831982476737658"
+date = "2018-06-30T02:08:58.425572"
 
-print("Номер карты: " + number_card)
-print("Номер счета: " + number_account)
+
+# for widget
+print(widget.mask_account_card(card))
+print(widget.mask_account_card(account))
+print(widget.get_date(date))
+
+
+# for processing
+process = [
+    {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
+    {"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08:58.425572"},
+    {"id": 594226727, "state": "CANCELED", "date": "2018-09-12T21:27:25.241689"},
+    {"id": 615064591, "state": "CANCELED", "date": "2018-10-14T08:21:33.419441"},
+]
+
+print(processing.sort_by_date(process))
+print(processing.sort_by_date(process, reverse=False))
+print(processing.filter_by_state(process))
