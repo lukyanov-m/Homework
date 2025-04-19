@@ -10,12 +10,18 @@ def invalid_values():
             "",
             "654564256546486565233",
             "6546 6554 6554 6542 3254",
-            "aaaabbbbccccddddeeee"
-            "aaaa1111bbbb2222cccc"
+            "aaaabbbbccccddddeeee",
+            "aaaa1111bbbb2222cccc",
+            #"1111222233334444",
+            # "11112222333344445555"
             ]
 
 
 @pytest.fixture()
 def invalid_types():
     return [1111222233334444,
-            111122------3333]
+            111122------3333,
+            11112222333344445555,
+            ----------------5555,
+            ]
+
