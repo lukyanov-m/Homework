@@ -48,4 +48,4 @@ def test_get_mask_account_with_invalid_number(invalid_values):
 def test_get_mask_account_with_invalid_type(invalid_types):
     for invalid_type in invalid_types:
         with pytest.raises(TypeError):
-            get_mask_account(invalid_types)
+            get_mask_account(invalid_type)
