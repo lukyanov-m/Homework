@@ -1,8 +1,11 @@
 def get_mask_card_number(card_number: str) -> str:
     """Функция разбивает номер карты по блокам и скрывает часть этого номера"""
     str_card_number = str(card_number)
-    if len(str_card_number) != 16:
+    if not isinstance(card_number, str):
+        raise TypeError("Неверный тип данных")
+    elif not card_number.isdigit() or len(str_card_number) != 16:
         raise ValueError("Не корректный номер карты")
+
     block1 = str_card_number[:4]
     block2 = str_card_number[4:6] + "**"
     block3 = "****"
