@@ -15,7 +15,8 @@ def get_mask_card_number(card_number: str) -> str:
 
 def get_mask_account(account_number: str) -> str:
     """Функция возвращает последние четыре цифры номера счета"""
-    str_account_number = str(account_number)
-    if len(str_account_number) != 20:
+    if not isinstance(account_number, str):
+        raise TypeError("Неверный тип данных")
+    elif not account_number.isdigit() or len(account_number) != 20:
         raise ValueError("Не корректный номер счета")
-    return "**" + str_account_number[-4:]
+    return f"**{account_number[-4:]}"
