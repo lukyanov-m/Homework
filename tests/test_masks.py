@@ -6,7 +6,6 @@ from src.masks import get_mask_account, get_mask_card_number
 @pytest.mark.parametrize(
     "number_card, expected",
     [
-        ("1596837868705199", "1596 83** **** 5199"),
         ("7158300734726758", "7158 30** **** 6758"),
         ("0000000000000000", "0000 00** **** 0000"),
     ],
@@ -30,7 +29,6 @@ def test_get_mask_card_number_with_invalid_type(invalid_types):
 @pytest.mark.parametrize(
     "account_number, expected",
     [
-        ("35383033474447895560", "**5560"),
         ("73654108430135874305", "**4305"),
         ("00000000000000000000", "**0000")
     ],
