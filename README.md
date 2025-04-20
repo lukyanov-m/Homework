@@ -15,6 +15,19 @@ git clone https://github.com/lukyanov-m/Homework.git
 
 Смотри pyproject.toml
 
+## Тестирование:
++ Тесты расположены в папке tests
++ **Фреймворк:** pytest
++ **Линтеры:** flake8, isort
+### Запуск тестов
++ Если требуется установите зависимости:
+1. poetry add pytest
+2. poetry add pytest-cov
++ Запуск всех тестов: pytest 
++ Запуск всех тестов с покрытием: pytest --cov
++ Создать отчет о покрытии тестов: pytest --cov=src --cov-report=html
+
+
 ## Использование:
 
 В модуле main можете подставить свои данные и получить соответствующие результаты.
