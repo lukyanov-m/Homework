@@ -3,10 +3,17 @@ from src.masks import get_mask_account, get_mask_card_number
 
 def mask_account_card(card_or_account: str) -> str:
     """Принимает тип и номер карты или счета, а возвращает тип и замаскированный номер"""
-    if card_or_account[-20:].isdigit():
-        return f"Счет {get_mask_account(card_or_account[-20:])}"
-    else:
+    if not isinstance(card_or_account, str):
+        raise TypeError("Неверный тип данных")
+
+    list_data = card_or_account.split()
+
+    if len(list_data) > 1 and len(list_data[-1]) == 20 and list_data[-1].isdigit():
+        return f"Счет {get_mask_account(list_data[-1])}"
+    elif len(list_data) > 1 and len(list_data[-1]) == 16 and list_data[-1].isdigit():
         return f"{card_or_account[:-16]}{get_mask_card_number(card_or_account[-16:])}"
+    else:
+        raise ValueError("Не корректные данные")
 
 
 def get_date(date_and_time: str) -> str:
