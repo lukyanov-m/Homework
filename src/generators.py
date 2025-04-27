@@ -26,7 +26,7 @@ def card_number_generator(start: int, stop: int) -> Iterator[str]:
     if start > 0 and len(str(stop)) <= 16:
         for number in range(start, stop):
             card_number = str(number).zfill(16)
-            format_card_number = " ".join(card_number[i : i + 4] for i in range(0, 16, 4))
+            format_card_number = " ".join(card_number[i: i + 4] for i in range(0, 16, 4))
             yield format_card_number
     else:
         yield "Выход за рамки диапазона"
