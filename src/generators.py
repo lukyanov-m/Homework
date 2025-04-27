@@ -30,3 +30,4 @@ def card_number_generator(start: int, stop: int) -> Iterator[str]:
             yield format_card_number
     else:
         yield "Выход за рамки диапазона"
+        yield "Поменяйте параметры, они должны быть положительными и иметь не более 16 цифр"
