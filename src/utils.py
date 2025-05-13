@@ -19,4 +19,4 @@ def get_financial_transaction_data(path: str) -> List[Dict[str, Any]]:
     return bank_data
 
 
-
+print(get_financial_transaction_data("../data/operations.json"))
