@@ -1,11 +1,12 @@
 import json
 from json import JSONDecodeError
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Union
+from pathlib import Path
 
 from src.external_api import get_currency_conversion
 
 
-def get_financial_transaction_data(path: str) -> List[Dict[str, Any]]:
+def get_financial_transaction_data(path: Union[str, Path]) -> List[Dict[str, Any]]:
     """Функция принимает путь до json файла, возвращает список словарей с данными о финансовых транзакциях"""
     try:
         with open(path, "r", encoding="utf-8") as bank_fail:
@@ -35,8 +36,5 @@ def get_transaction_amount(transaction: int) -> float:
             return data["operationAmount"]["amount"]
         else:
             return get_currency_conversion(
-                "RUB",
-                data["operationAmount"]["currency"]["code"],
-                data["operationAmount"]["amount"]
+                "RUB", data["operationAmount"]["currency"]["code"], data["operationAmount"]["amount"]
             )["result"]
-
