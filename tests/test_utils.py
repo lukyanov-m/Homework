@@ -1,7 +1,7 @@
 import pytest
 import json
 from unittest.mock import mock_open, patch
-from src.utils import get_financial_transaction_data
+from src.utils import get_financial_transaction_data, get_transaction_amount
 
 
 @pytest.mark.parametrize(
@@ -19,3 +19,13 @@ def test_get_financial_transaction_data(input_data, expected):
         else patch("builtins.open", side_effect=FileNotFoundError)
     ):
         assert get_financial_transaction_data("test.json") == expected
+
+
+@pytest.mark.parametrize(
+    "input_data,expected", [(441945886,"31957.58"),
+                            ("", None)
+                            ])
+def test_get_transaction_amount(input_data, expected):
+    assert get_transaction_amount(input_data) == expected
+
+
