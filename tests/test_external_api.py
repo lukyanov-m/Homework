@@ -1,12 +1,17 @@
+import os
+from unittest.mock import Mock, patch
+
 import pytest
-from unittest.mock import patch, Mock
-from requests.exceptions import RequestException
+from dotenv import load_dotenv
 
 from src.external_api import get_currency_conversion
 
+load_dotenv("C:/Users/Mishanya/PycharmProjects/Bank/.env")
 
-# Тест для ошибки API (не 200 статус)
-@patch('requests.request')
+ERD_API_KEY = os.getenv("ERD_API_KEY")
+
+
+@patch("requests.request")
 def test_get_currency_conversion_api_error(mock_request):
     mock_response = Mock()
     mock_response.status_code = 400
@@ -17,7 +22,7 @@ def test_get_currency_conversion_api_error(mock_request):
         get_currency_conversion("RUB", "USD", 100)
 
 
-@patch('requests.request')
+@patch("requests.request")
 def test_get_currency_conversion_invalid_json(mock_request):
     mock_response = Mock()
     mock_response.status_code = 200
@@ -27,24 +32,16 @@ def test_get_currency_conversion_invalid_json(mock_request):
     with pytest.raises(ValueError):
         get_currency_conversion("RUB", "USD", 100)
 
-# Параметризованный тест для разных валют и сумм
-@pytest.mark.parametrize("from_curr,to_curr,amount", [
-    ("USD", "RUB", 100),
-    ("EUR", "USD", 50),
-    ("GBP", "EUR", 75),
-])
-@patch('requests.request')
-def test_different_currencies(mock_request, from_curr, to_curr, amount):
+
+@patch("requests.request")
+def test_get_currency_conversion(mock_request):
     mock_response = Mock()
     mock_response.status_code = 200
-    mock_response.json.return_value = {
-        "success": True,
-        "query": {"from": from_curr, "to": to_curr, "amount": amount},
-        "result": amount * 75  # Произвольный курс для теста
-    }
+    mock_response.json.return_value = {"result": 1}
     mock_request.return_value = mock_response
-
-    result = get_currency_conversion(to_curr, from_curr, amount)
-    assert result["query"]["from"] == from_curr
-    assert result["query"]["to"] == to_curr
-    assert result["query"]["amount"] == amount
+    assert get_currency_conversion("RUB", "USD", 10) == 1
+    mock_request.assert_called_once_with(
+        "GET",
+        "https://api.apilayer.com/exchangerates_data/convert?to=RUB&from=USD&amount=10",
+        headers={"apikey": ERD_API_KEY},
+    )

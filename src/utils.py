@@ -1,7 +1,7 @@
 import json
 from json import JSONDecodeError
-from typing import Any, Dict, List, Union
 from pathlib import Path
+from typing import Any, Dict, List, Union
 
 from src.external_api import get_currency_conversion
 
@@ -37,4 +37,4 @@ def get_transaction_amount(transaction: int) -> float:
         else:
             return get_currency_conversion(
                 "RUB", data["operationAmount"]["currency"]["code"], data["operationAmount"]["amount"]
-            )["result"]
+            )

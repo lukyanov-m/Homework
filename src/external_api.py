@@ -9,7 +9,7 @@ load_dotenv("C:/Users/Mishanya/PycharmProjects/Bank/.env")
 ERD_API_KEY = os.getenv("ERD_API_KEY")
 
 
-def get_currency_conversion(currency_to: str, currency_from: str, amount: float) -> Dict[str, Any]:
+def get_currency_conversion(currency_to: str, currency_from: str, amount: float) -> float:
     """Функция конвертации валюты"""
 
     url = f"https://api.apilayer.com/exchangerates_data/convert?to={currency_to}&from={currency_from}&amount={amount}"
@@ -24,4 +24,4 @@ def get_currency_conversion(currency_to: str, currency_from: str, amount: float)
     if status_code != 200:
         raise ValueError("Не удалось получить курс валюты")
     else:
-        return result
+        return result["result"]
