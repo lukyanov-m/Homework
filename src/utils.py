@@ -33,8 +33,9 @@ def get_transaction_amount(transaction: int) -> float:
         if data.get("id") != transaction:
             continue
         if data["operationAmount"]["currency"]["code"] == "RUB":
-            return data["operationAmount"]["amount"]
+            return float(data["operationAmount"]["amount"])
         else:
-            return get_currency_conversion(
+            return float(get_currency_conversion(
                 "RUB", data["operationAmount"]["currency"]["code"], data["operationAmount"]["amount"]
+            )
             )
